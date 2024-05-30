@@ -1,0 +1,4 @@
+export TOKENIZERS_PARALLELISM=false
+export TRANSFORMERS_NO_ADVISORY_WARNINGS=1
+
+python train.py

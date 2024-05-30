@@ -72,12 +72,11 @@ class MetaLlamaForCausalLM(LlamaPreTrainedModel):
             if "lora" not in n:
                 p.requires_grad = False
         
-        self.train_meta_head()
         if self.is_gradient_checkpointing:
             self.enable_input_require_grads()
 
     def train_meta_head(self):
-        for n, p in self.named_parameters:
+        for n, p in self.named_parameters():
             if "dimension_glue" in n:
                 p.requires_grad = True
 

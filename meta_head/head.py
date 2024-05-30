@@ -2,7 +2,7 @@ from transformers import PreTrainedModel
 from .config import MetaheadConfig
 import torch
 import torch.nn as nn
-from .glue import DimensionGlueConfig, DimensionGlue
+from .glue import DimensionGlueConfig, DimensionGlue, ReversibleMLP, ReversibleMLPConfig, SeparateMLPConfig, SeparateMLP
 
 class MetaheadPreTrainedModel(PreTrainedModel):
     config_class = MetaheadConfig
@@ -29,7 +29,9 @@ class MetaheadModel(MetaheadPreTrainedModel):
 
         self.embed_tokens = nn.Embedding(config.vocab_size, config.hidden_size, self.padding_idx)
         self.lm_head = nn.Linear(config.hidden_size, config.vocab_size, bias=False)
-        self.dimension_glue = DimensionGlue(DimensionGlueConfig())
+        # self.dimension_glue = DimensionGlue(DimensionGlueConfig())
+        # self.dimension_glue = ReversibleMLP(ReversibleMLPConfig())
+        self.dimension_glue = SeparateMLP(SeparateMLPConfig())
 
         self.gradient_checkpointing = False
         self.force_gradient_checkpointing = False
