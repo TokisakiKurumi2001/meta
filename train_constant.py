@@ -66,7 +66,7 @@ if __name__ == "__main__":
 
     logger.info("Initializing training configs")
     training_arguments = TrainingArguments(
-        output_dir='testing_constant',
+        output_dir='testing_constant_v1',
         num_train_epochs=2,
         per_device_train_batch_size=1,
         per_device_eval_batch_size=1,
@@ -93,5 +93,5 @@ if __name__ == "__main__":
     trainer.train()
 
     logger.info("Saving ...")
-    trainer.save_model('saved_ckpt/final_output_v6')
-    model.save_meta_head('saved_ckpt/dimension-glue-v6')
+    trainer.save_model('saved_ckpt/final_output_v7')
+    model.save_meta_head('saved_ckpt/dimension-glue-v7')
